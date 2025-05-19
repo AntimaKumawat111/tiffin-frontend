@@ -4,9 +4,9 @@ import { Href } from "expo-router";
 import { fontFamily } from "@/dimensions/fontFamily";
 
 interface BottomBtnProps {
-  pageName: Href; // Navigation path
+  // pageName: Href; // Navigation path
   leftValue?: string | number; // Left side text
-  rightValue?: string | number; // Right side text
+  rightValue?: string | number; // Right side textl
 }
 
 export default function Button({ leftValue, rightValue }: BottomBtnProps) {
@@ -14,18 +14,17 @@ export default function Button({ leftValue, rightValue }: BottomBtnProps) {
 
   const handleClick = () => {
     if (!hasBothValues) {
-      alert(`You click the ${leftValue || rightValue} `);
+      // alert(`You click the ${leftValue || rightValue} `);
+      // console.warn("changedddddd");
     } else {
-      alert(`You click the both value btn`);
+      console.warn("changed");
+      // alert(`You click the both value btn`);
     }
   };
 
   return (
     <View style={style.btnMain}>
-      <TouchableOpacity
-        style={style.button}
-        onPress={handleClick}
-      >
+      <TouchableOpacity style={style.button} onPress={handleClick}>
         <View
           className={`flex-row ${
             hasBothValues ? "justify-between" : "justify-center"
@@ -48,18 +47,18 @@ export default function Button({ leftValue, rightValue }: BottomBtnProps) {
 const style = StyleSheet.create({
   btnMain: {
     backgroundColor: "white",
-    paddingHorizontal: 10,
+    width: "auto",
   },
 
   button: {
     width: "auto",
     backgroundColor: "black",
-    paddingVertical: 3,
+    paddingVertical: 8,
   },
 
   textClass: {
     color: "white",
-    fontSize: 25,
-    fontFamily: fontFamily.nunito,
+    fontSize: 26,
+    fontFamily: fontFamily.nunitoSemiBold,
   },
 });

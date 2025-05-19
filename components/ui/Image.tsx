@@ -3,7 +3,7 @@ import { Image } from "expo-image";
 
 export default function ImageS() {
   return (
-    <View className="border border-black">
+    <View>
       <Text>Here is the Bottom</Text>
       <Image
         source={{

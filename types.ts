@@ -1,7 +1,9 @@
-// types.ts
-export type RootStackParamList = {
-  Home: undefined;
+export type AuthStackParamList = {
+  Otp: undefined;
   Login: undefined;
-  GetOtp: undefined;
+};
+
+export type HoomStackParamList = {
   Tabs: undefined;
+  Home: undefined;
 };

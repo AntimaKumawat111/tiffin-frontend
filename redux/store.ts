@@ -1,10 +1,13 @@
-// redux/store.ts
 import { configureStore } from "@reduxjs/toolkit";
-import { sendOtpReducer } from "./slice/loginSlice";
+import { SendOtpThunkReducer } from "./slice/OtpSlice";
+import { LoginReducer } from "./slice/LoginSlice";
+import authReducer from "./authSlice";
 
 export const store = configureStore({
   reducer: {
-    sendOtp: sendOtpReducer,
+    sendOtp: SendOtpThunkReducer,
+    verifyOtp: LoginReducer,
+    auth: authReducer,
   },
 });
 

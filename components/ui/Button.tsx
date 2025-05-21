@@ -1,34 +1,29 @@
+import { fontFamily } from "@/utils/fontFamily";
 import * as React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Href } from "expo-router";
-import { fontFamily } from "@/dimensions/fontFamily";
 
 interface BottomBtnProps {
-  // pageName: Href; // Navigation path
   leftValue?: string | number; // Left side text
   rightValue?: string | number; // Right side textl
+  onClick?: () => void;
 }
-
-export default function Button({ leftValue, rightValue }: BottomBtnProps) {
+export default function Button({
+  leftValue,
+  rightValue,
+  onClick,
+}: BottomBtnProps) {
   const hasBothValues = leftValue !== undefined && rightValue !== undefined;
-
-  const handleClick = () => {
-    if (!hasBothValues) {
-      // alert(`You click the ${leftValue || rightValue} `);
-      // console.warn("changedddddd");
-    } else {
-      console.warn("changed");
-      // alert(`You click the both value btn`);
-    }
-  };
 
   return (
     <View style={style.btnMain}>
-      <TouchableOpacity style={style.button} onPress={handleClick}>
+      <TouchableOpacity style={style.button} onPress={onClick}>
         <View
-          className={`flex-row ${
-            hasBothValues ? "justify-between" : "justify-center"
-          } px-4`}
+          style={[
+            style.container,
+            hasBothValues
+              ? { justifyContent: "space-between" }
+              : { justifyContent: "center" },
+          ]}
         >
           {hasBothValues ? (
             <>
@@ -45,6 +40,11 @@ export default function Button({ leftValue, rightValue }: BottomBtnProps) {
 }
 
 const style = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    paddingHorizontal: 16,
+  },
   btnMain: {
     backgroundColor: "white",
     width: "auto",

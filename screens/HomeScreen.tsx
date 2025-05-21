@@ -1,4 +1,4 @@
-import { fontFamily } from "@/dimensions/fontFamily";
+import { fontFamily } from "@/utils/fontFamily";
 import { FontAwesome5 } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -12,7 +12,7 @@ function HomeScreen() {
           <FontAwesome5 name="user-alt" size={30} color="white" />
         </TouchableOpacity>
       </View>
-      {/* <Card /> */}
+      <Card />
     </View>
   );
 }
@@ -22,11 +22,8 @@ export default HomeScreen;
 const style = StyleSheet.create({
   main: {
     flex: 1,
-    marginTop: 10,
     paddingHorizontal: 15,
     height: "auto",
-    // borderWidth: 2,
-    // borderColor: "blue",
   },
 
   title: {
@@ -35,8 +32,6 @@ const style = StyleSheet.create({
   },
 
   headerClass: {
-    // borderWidth: 1,
-    // borderColor: "blue",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -52,7 +47,7 @@ const style = StyleSheet.create({
 function Card() {
   return (
     <View>
-      <Text>Hello Card</Text>
+      <Text>Here will be product cards</Text>
     </View>
   );
 }

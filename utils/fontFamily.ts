@@ -1,7 +1,7 @@
 export const fontFamily = {
   yesevaOne: "YesevaOne-Regular",
   nunito: "Nunito-Black",
-  nunitoMedium: "Nunito-Black",
+  nunitoMedium: "Nunito-Medium",
   bold: "Nunito-Blackitalic",
   nunitoLight: "Nunito-Light",
   nunitoExtraLight: "Nunito-ExtraLight",

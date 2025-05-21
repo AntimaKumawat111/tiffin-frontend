@@ -1,11 +1,12 @@
-import BackgroundImage from "@/components/ui/BackgroundImage";
+// import BackgroundImage from "@/components/ui/BGImage";
+import BGImage from "@/components/ui/BGImage";
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 function OrderScreen() {
   return (
     <View>
-      <BackgroundImage
+      <BGImage
         bgColor="orange"
         title="Subscription"
         paragraph="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut explicabo enim quis, quasi beatae, repellendus repudiandae veniam excepturi obcaecati quos harum minus libero ipsum eaque eveniet aspernatur modi, ut optio?"

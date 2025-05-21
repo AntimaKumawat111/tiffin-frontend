@@ -6,7 +6,7 @@ import NotificationScreen from "@/screens/NotificationScreen";
 
 const Tab = createBottomTabNavigator();
 
-export default function TabLayout() {
+export default function Tabs() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false}}>
       <Tab.Screen name="HomeScreen" component={HomeScreen} />
@@ -15,4 +15,3 @@ export default function TabLayout() {
     </Tab.Navigator>
   );
 }
-// -----------------------

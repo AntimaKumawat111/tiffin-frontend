@@ -1,21 +1,21 @@
 import Button from "@/components/ui/Button";
+import { SendOtpThunk } from "@/redux/slice/authSlice";
 import { AppDispatch, RootState } from "@/redux/store";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { StyleSheet, Text, TextInput, View } from "react-native";
-import { SendOtpThunk } from "@/redux/slice/OtpSlice";
-import { color } from "../utils/colors";
-import { fontFamily } from "@/utils/fontFamily";
 import { AuthStackParamList } from "@/types";
+import { fontFamily } from "@/utils/fontFamily";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useEffect, useState } from "react";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import Toast from "react-native-toast-message";
+import { useDispatch, useSelector } from "react-redux";
+import { color } from "../utils/colors";
 
 type OtpProp = NativeStackScreenProps<AuthStackParamList, "Otp">;
 
 export default function Otp({ navigation }: OtpProp) {
   const dispatch = useDispatch<AppDispatch>();
-  const phone = useSelector((state: RootState) => state.sendOtp);
+  const phone = useSelector((state: RootState) => state.auth);
 
   const [userNumber, setUserNumber] = useState("");
 
@@ -58,13 +58,13 @@ export default function Otp({ navigation }: OtpProp) {
 
   useEffect(() => {
     const handleOtpSuccess = async () => {
-      if (phone.isData?.otp) {
+      if (phone.data?.otp) {
         Toast.show({
           type: "success",
-          text1: `OTP value is : ${phone.isData.otp}`,
+          text1: `OTP value is : ${phone.data.otp}`,
         });
         try {
-          await AsyncStorage.setItem("Otp", phone.isData.otp);
+          await AsyncStorage.setItem("Otp", phone.data.otp);
         } catch (error) {
           console.log("Error in get otp", error);
           throw error;
@@ -74,7 +74,7 @@ export default function Otp({ navigation }: OtpProp) {
     };
 
     handleOtpSuccess();
-  }, [phone.isData]);
+  }, [phone.data]);
 
   return (
     <>

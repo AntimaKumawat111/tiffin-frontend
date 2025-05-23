@@ -1,8 +1,6 @@
 import React from "react";
-import { View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { HoomStackParamList } from "@/types";
-import HomeScreen from "@/screens/HomeScreen";
 import Tabs from "../tabs/Tabs";
 
 export default function HomeStack() {
@@ -11,7 +9,7 @@ export default function HomeStack() {
   return (
     <>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Homescreen"
         screenOptions={{
           headerShown: false,
           contentStyle: {
@@ -20,11 +18,13 @@ export default function HomeStack() {
           },
           statusBarHidden: true,
           headerTransparent: true,
+          // animation:"fade_from_bottom"
+          
         }}
+        
       >
         {/* Match name prop with type definition */}
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Tabs" component={Tabs} />
+        <Stack.Screen name="Homescreen" component={Tabs} />
       </Stack.Navigator>
     </>
   );

@@ -17,9 +17,9 @@ let toastConfigs = {
         fontFamily: fontFamily.nunitoSemiBold,
         textTransform: "capitalize",
         fontSize: 15,
-        color:"white"
+        color: "white",
       }}
-      style={{ borderRadius: 20, backgroundColor:"green" }}
+      style={{ borderRadius: 20, backgroundColor: "#5A9864" }}
     />
   ),
   error: (props: any) => (
@@ -30,7 +30,7 @@ let toastConfigs = {
       text1Style={{
         fontWeight: "normal",
         color: "white",
-        fontFamily: fontFamily.nunitoMedium,
+        fontFamily: fontFamily.nunitoSemiBold,
         textTransform: "capitalize",
         fontSize: 15,
       }}

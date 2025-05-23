@@ -1,16 +1,16 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Text } from "react-native";
-import { Provider, useDispatch, useSelector } from "react-redux";
-import { RootState, store } from "./redux/store";
-import { fontFamily } from "./utils/fontFamily";
-import AuthStack from "./routes/stacks/AuthStack";
-import Toast from "react-native-toast-message";
-import toastConfigs from "./utils/toastConfig";
-import HomeStack from "./routes/stacks/HomeStack";
 import { useEffect, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { login } from "./redux/authSlice";
+import { Text } from "react-native";
+import Toast from "react-native-toast-message";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { login } from "./redux/slice/authSlice";
+import { AppDispatch, RootState, store } from "./redux/store";
+import AuthStack from "./routes/stacks/AuthStack";
+import HomeStack from "./routes/stacks/HomeStack";
+import { fontFamily } from "./utils/fontFamily";
+import toastConfigs from "./utils/toastConfig";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -37,22 +37,19 @@ export default function App() {
 }
 
 function MyApp() {
-  const dispatch = useDispatch();
-  const isLogin = useSelector((state: RootState) => state.auth.isLogin);
+  const dispatch = useDispatch<AppDispatch>();
   const [tokenChecked, setTokenChecked] = useState(false);
+  const [hasToken, setHasToken] = useState(false);
 
   useEffect(() => {
-    AsyncStorage.clear();
     const checkToken = async () => {
       const token = await AsyncStorage.getItem("token");
-
       if (token) {
-        dispatch(login()); // ✅ update Redux state if token exists
+        setHasToken(true);
+        dispatch(login());
       }
-
       setTokenChecked(true);
     };
-
     checkToken();
   }, []);
 
@@ -62,7 +59,7 @@ function MyApp() {
 
   return (
     <NavigationContainer>
-      {isLogin ? <HomeStack /> : <AuthStack />}
+      {hasToken ? <HomeStack /> : <AuthStack />}
     </NavigationContainer>
   );
 }

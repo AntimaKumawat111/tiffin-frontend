@@ -4,6 +4,6 @@ export type AuthStackParamList = {
 };
 
 export type HoomStackParamList = {
+  Homescreen: undefined;
   Tabs: undefined;
-  Home: undefined;
 };

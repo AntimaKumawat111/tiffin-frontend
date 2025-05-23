@@ -1,18 +1,18 @@
 import Button from "@/components/ui/Button";
-import { login } from "../redux/authSlice";
+import { LoginThunkReducer } from "@/redux/slice/authSlice";
+import { AppDispatch, RootState } from "@/redux/store";
 import { fontFamily } from "@/utils/fontFamily";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { color } from "../utils/colors";
-import { LoginThunkReducer } from "../redux/slice/LoginSlice";
-import { RootState } from "@/redux/store";
 import Toast from "react-native-toast-message";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/slice/authSlice";
+import { color } from "../utils/colors";
 
 export default function Login() {
-  const dispatch = useDispatch();
-  const loginState = useSelector((state: RootState) => state.verifyOtp);
+  const dispatch = useDispatch<AppDispatch>();
+  const loginState = useSelector((state: RootState) => state.auth);
   const [userOtp, setUserOtp] = useState("");
 
   const handleClick = async () => {
@@ -30,7 +30,7 @@ export default function Login() {
       } else {
         Toast.show({
           type: "error",
-          text1: "Otp is not matched",
+          text1: `OTP is not matched with ${loginState.data.otp}`,
         });
       }
     } catch (e) {
@@ -85,14 +85,12 @@ const style = StyleSheet.create({
   desciption: {
     marginTop: 40,
     fontSize: 31,
-    // fontFamily: fontFamily.nunitoLight,
     fontFamily: fontFamily.nunitoSemiBold,
   },
 
   subDesciption: {
     marginTop: 20,
     fontSize: 24,
-    // fontFamily: fontFamily.nunitoExtraLight,
     fontFamily: fontFamily.nunitoSemiBold,
     color: color.grayLight,
   },

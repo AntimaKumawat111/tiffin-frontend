@@ -1,13 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { SendOtpThunkReducer } from "./slice/OtpSlice";
-import { LoginReducer } from "./slice/LoginSlice";
-import authReducer from "./authSlice";
-
+import { authSliceReducer } from "./slice/authSlice";
+import { productReducer } from "./slice/ProductSlice";
 export const store = configureStore({
   reducer: {
-    sendOtp: SendOtpThunkReducer,
-    verifyOtp: LoginReducer,
-    auth: authReducer,
+    auth: authSliceReducer,
+    product: productReducer,
   },
 });
 

@@ -46,7 +46,7 @@ function MyApp() {
       const token = await AsyncStorage.getItem("token");
       if (token) {
         setHasToken(true);
-        dispatch(login());
+        // dispatch(login());
       }
       setTokenChecked(true);
     };

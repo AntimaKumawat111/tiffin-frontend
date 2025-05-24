@@ -22,7 +22,7 @@ export default function Otp({ navigation }: OtpProp) {
   const saveUserNumber = async (number: any) => {
     try {
       await AsyncStorage.setItem("userNumber", number);
-      console.log("User number saved");
+      // console.log("User number saved");
     } catch (e) {
       console.error("Failed to save", e);
     }
@@ -49,7 +49,7 @@ export default function Otp({ navigation }: OtpProp) {
       });
     }
 
-    console.log("Sending OTP to:", userNumber);
+    // console.log("Sending OTP to:", userNumber);
     await saveUserNumber(userNumber);
     const storedNumber = await loadUserNumber();
 
@@ -65,6 +65,7 @@ export default function Otp({ navigation }: OtpProp) {
         });
         try {
           await AsyncStorage.setItem("Otp", phone.data.otp);
+          // console.log("Otp is:", phone.data.otp);
         } catch (error) {
           console.log("Error in get otp", error);
           throw error;

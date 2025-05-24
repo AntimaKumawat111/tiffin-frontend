@@ -37,7 +37,7 @@ export const SendOtpThunk = createAsyncThunk(
       // console.log("otp Value is:", response.data.otp);
       return response.data;
     } catch (error: any) {
-      // console.error("Error in send-otp:", error);
+      console.error("Error in send-otp:", error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -50,7 +50,7 @@ export const LoginThunkReducer = createAsyncThunk(
       const response = await axios.post(`${baseurl}/auth/verify-otp`, data);
       return response.data;
     } catch (error: any) {
-      // console.log("Error in VerifyOtp:", error);
+      console.log("Error in VerifyOtp:", error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

@@ -1,7 +1,5 @@
 import { fontFamily } from "@/utils/fontFamily";
-import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 interface Bgcolor {
   bgColor: string;
@@ -10,20 +8,12 @@ interface Bgcolor {
 }
 
 export default function BGImage({ bgColor, title, paragraph }: Bgcolor) {
-  const navigation = useNavigation();
   return (
     <View>
-      <View style={(style.bgImage, { backgroundColor: bgColor })} />
-      <View className="p-2">
-        <TouchableOpacity
-          onPress={() => {
-            navigation.goBack();
-          }}
-        >
-          <Ionicons name="chevron-back-outline" color="black" size={40} />
-          <Text style={style.textClass}>{title}</Text>
-          <Text style={style.paragraphClass}>{paragraph}</Text>
-        </TouchableOpacity>
+      <View style={[style.bgImage, { backgroundColor: bgColor }]} />
+      <View style={{ paddingHorizontal: 15, marginTop: 40 }}>
+        <Text style={style.textClass}>{title}</Text>
+        <Text style={style.paragraphClass}>{paragraph}</Text>
       </View>
     </View>
   );
@@ -44,12 +34,15 @@ const style = StyleSheet.create({
     paddingLeft: 2,
     marginTop: 5,
     textTransform: "capitalize",
+    fontFamily: fontFamily.nunitoSemiBold,
   },
+
   paragraphClass: {
     paddingLeft: 2,
     color: "gray",
     textTransform: "capitalize",
     marginTop: 5,
-    fontFamily: fontFamily.nunito,
+    fontSize: 19,
+    fontFamily: fontFamily.nunitoMedium,
   },
 });

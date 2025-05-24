@@ -1,9 +1,20 @@
 export type AuthStackParamList = {
   Otp: undefined;
   Login: undefined;
+  HomeScreen: undefined;
 };
 
-export type HoomStackParamList = {
+// types.ts
+
+export type BottomTabParamList = {
   Homescreen: undefined;
-  Tabs: undefined;
+  Orders: undefined;
+  Notification: undefined;
+};
+
+export type HomeStackParamList = {
+  Homescreen: undefined;
+  Tabs: undefined; 
+  Profile: undefined;
+  Subscription: undefined;
 };

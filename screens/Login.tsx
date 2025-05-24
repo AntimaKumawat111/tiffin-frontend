@@ -40,12 +40,16 @@ export default function Login() {
 
   useEffect(() => {
     if (loginState.isLogin && loginState.data) {
-      AsyncStorage.setItem("token", loginState.data.token);
-      dispatch(login());
-      Toast.show({
-        type: "success",
-        text1: "Login successfuly !",
-      });
+      AsyncStorage.setItem("token", loginState.data.token)
+        .then(() => {
+          Toast.show({
+            type: "success",
+            text1: "Login successful!",
+          });
+        })
+        .catch((error) => {
+          console.error("AsyncStorage error:", error);
+        });
     }
   }, [loginState.isLogin]);
 

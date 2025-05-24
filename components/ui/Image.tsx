@@ -1,4 +1,3 @@
-import { Text, View } from "react-native";
 import { Image } from "expo-image";
 
 interface ImageProps {
@@ -15,7 +14,6 @@ export default function Images({ url, style }: ImageProps) {
         }}
         contentFit="cover"
         transition={1000}
-        // style={{ width: 200, height: 200 }}
         style={style}
       />
     </>

@@ -15,24 +15,6 @@ const initialState: ProductProps = {
   data: null,
 };
 
-// export const getProduct = createAsyncThunk(
-//   "products/GET",
-//   async (_, thunkAPI) => {
-//     const token = AsyncStorage.getItem("token");
-//     try {
-//       const response = await axios.get(`${baseurl}/products`, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       });
-//       return response.data;
-//     } catch (error: any) {
-//       console.warn("Error in product's get api :", error);
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
 export const getProduct = createAsyncThunk(
   "products/GET",
   async (_, thunkAPI) => {

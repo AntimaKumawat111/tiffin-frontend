@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Otp from "@/screens/Otp";
 import Login from "@/screens/Login";
 import { AuthStackParamList } from "@/types";
+import HomeScreen from "@/screens/HomeScreen";
 
 export default function AuthStack() {
   const Stack = createNativeStackNavigator<AuthStackParamList>();

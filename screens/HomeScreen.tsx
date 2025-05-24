@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import Button from "@/components/ui/Button";
 import { fontFamily } from "@/utils/fontFamily";
 import {
-  FontAwesome,
+  AntDesign,
+  Entypo,
   FontAwesome5,
   Ionicons,
   MaterialIcons,
 } from "@expo/vector-icons";
+
 import {
   Modal,
   ScrollView,
@@ -21,6 +23,8 @@ import { getProduct } from "../redux/slice/ProductSlice";
 import { color } from "@/utils/colors";
 import { baseurl } from "@/redux/config/config";
 import Images from "@/components/ui/Image";
+import { HomeStackParamList } from "@/types";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 interface CardProps {
   image: string;
@@ -30,7 +34,9 @@ interface CardProps {
   _id: string;
 }
 
-function HomeScreen() {
+type HomeProp = NativeStackScreenProps<HomeStackParamList, "Homescreen">;
+
+function HomeScreen({ navigation }: HomeProp) {
   const dispatch = useDispatch<AppDispatch>();
   const productState = useSelector((state: RootState) => state.product);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -55,7 +61,10 @@ function HomeScreen() {
       <ScrollView style={style.main}>
         <View style={style.headerClass}>
           <Text style={style.title}>Tiffin{"\n"}Express</Text>
-          <TouchableOpacity style={style.iconClass}>
+          <TouchableOpacity
+            style={style.iconClass}
+            onPress={() => navigation.navigate("Profile")}
+          >
             <FontAwesome5 name="user-alt" size={30} color="white" />
           </TouchableOpacity>
         </View>
@@ -63,13 +72,15 @@ function HomeScreen() {
         {products &&
           products.length > 0 &&
           products.map((data: CardProps) => (
-            <Card
-              _id={data._id}
-              image={data.image}
-              name={data.name}
-              description={data.description}
-              price={data.price}
-            />
+            <View key={data._id}>
+              <Card
+                _id={data._id}
+                image={data.image}
+                name={data.name}
+                description={data.description}
+                price={data.price}
+              />
+            </View>
           ))}
       </ScrollView>
 
@@ -81,11 +92,11 @@ function HomeScreen() {
             setIsModalVisible(true);
           }}
         >
-          <FontAwesome
-            name={isModalVisible ? "close" : "plus"}
-            size={35}
-            color="black"
-          />
+          {isModalVisible ? (
+            <Entypo name="cross" size={35} color="black" />
+          ) : (
+            <AntDesign name="plus" size={35} color="black" />
+          )}
         </TouchableOpacity>
       </View>
 
@@ -101,7 +112,10 @@ function HomeScreen() {
           onPress={() => setIsModalVisible(false)}
         >
           <View style={style.modalContent}>
-            <TouchableOpacity style={style.innderContainer}>
+            <TouchableOpacity
+              style={style.innderContainer}
+              onPress={() => navigation.navigate("Subscription")}
+            >
               <MaterialIcons
                 name="dinner-dining"
                 size={30}

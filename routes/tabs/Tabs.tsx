@@ -1,13 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-
 import "../../global.css";
-
-import HomeScreen from "@/screens/HomeScreen";
 import OrderScreen from "@/screens/OrderScreen";
 import NotificationScreen from "@/screens/NotificationScreen";
+import { BottomTabParamList } from "@/types";
+import HomeScreen from "@/screens/HomeScreen";
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function Tabs() {
   return (
@@ -25,7 +24,7 @@ export default function Tabs() {
           color: string;
           size: number;
         }) => {
-          if (route.name === "Home") {
+          if (route.name === "Homescreen") {
             return (
               <MaterialCommunityIcons name="home" color={color} size={size} />
             );
@@ -45,7 +44,7 @@ export default function Tabs() {
         },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Homescreen" component={HomeScreen} />
       <Tab.Screen name="Orders" component={OrderScreen} />
       <Tab.Screen name="Notification" component={NotificationScreen} />
     </Tab.Navigator>
